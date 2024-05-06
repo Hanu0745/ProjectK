@@ -1,12 +1,14 @@
 
-import { Text, View, StyleSheet, ImageBackground } from "react-native";
+import { View, StyleSheet, ImageBackground, Text } from "react-native";
 import { useLayoutEffect, useContext } from "react";
 
-import { dummy_data } from "../dumData/dumdata";
 import Icons from "../ui/icons";
 import { GlobalStyles } from "../globlstls/globalStyles";
 import Buttons from "../ui/buttons";
 import { ExpenceStorage } from "../Store/expancesstore";
+import axios from "axios";
+
+import ExpenseForm from "./forms/expenseForm";
 
 const ManageExpences = ({ route, navigation }) => {
 
@@ -17,7 +19,7 @@ const ManageExpences = ({ route, navigation }) => {
     console.log(isEditing);
 
     const expaseFilter = expasedata.expences.filter((expense) => expense.id === expenceid);
-    console.log(expaseFilter);
+    // console.log(expaseFilter);
 
     useLayoutEffect(() => {
         navigation.setOptions({
@@ -47,7 +49,7 @@ const ManageExpences = ({ route, navigation }) => {
                 }
             )
             console.log('updates');
-        }else{
+        } else {
             expasedata.addExpense(
                 {
                     disription: 'A Chair!!!',
@@ -60,22 +62,29 @@ const ManageExpences = ({ route, navigation }) => {
         navigation.goBack();
     };
 
-    const Cancels = () => {
-        navigation.goBack();
+    const Cancels = async () => {
+        // navigation.goBack();
+        await axios.get('https://18.61.216.20:5010/api/last-five-slider')
+            .then((res) => {
+                console.log('jskdfjhd');
+                console.log(res);
+            }).catch((er) => {
+                console.log(er);
+            })
         console.log('cancele');
     }
 
     return (
         <View style={styles.container}>
-            <ImageBackground source={require('../assets/images/backk.jpg')} style={styles.imgcontainer}>
+                <ExpenseForm />
                 <View style={styles.btncontainer}>
                     <Buttons onpress={UpdateOrAdd}>{isEditing ? 'Update' : 'Add'}</Buttons>
                     <Buttons onpress={Cancels}>Cancele</Buttons>
                 </View>
                 <View style={styles.trashcontainer}>
-                    {isEditing && <Icons icc='trash' color={'red'} size={37} onpress={DeleteExpance}></Icons>}
+                    {isEditing && <Icons icc='trash' color={GlobalStyles.colors.primary100} size={37} onpress={DeleteExpance}></Icons>}
                 </View>
-            </ImageBackground>
+                {/* <ImageBackground style={styles.backimg} source={require('../assets/images/withrin.jpg')}><Text style={{fontSize: 30, marginBottom: 50}}>😘</Text></ImageBackground> */}
         </View>
     )
 }
@@ -84,27 +93,29 @@ export default ManageExpences;
 
 const styles = StyleSheet.create({
 
+
     container: {
         flex: 1,
-    },
-
-    imgcontainer: {
-        flex: 1,
-        resizeMode: 'cover',
         alignItems: 'center',
         padding: 10,
-
+        backgroundColor: GlobalStyles.colors.primary700
+    },
+    backimg: {
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center'
     },
     trashcontainer: {
-        borderTopWidth: 2,
+        borderTopWidth: 4,
         borderColor: GlobalStyles.colors.primary500,
         width: '80%',
         alignItems: 'center',
-        margin: 7
+        margin: 7,
+        borderTopColor: GlobalStyles.colors.primary500
     },
     btncontainer: {
         width: '90%',
         flexDirection: 'row',
         justifyContent: 'space-around'
-    }
+    },
 })

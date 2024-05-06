@@ -25,7 +25,6 @@ const DisplayExpenses = ({ expenses, expenseperiod }) => {
 export default DisplayExpenses;
 
 const styles = StyleSheet.create({
-
     content:{
         alignItems: 'center',
         margin: 16

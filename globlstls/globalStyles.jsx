@@ -2,12 +2,12 @@
 export const GlobalStyles = {
 
     colors: {
-        primary50: '#333131', // tint
-        primary100: '#c6affc',
-        primary200: '#a281f0',
-        primary400: '#5721d4',
-        primary500: '#d65a54', // barss
-        primary700: '#2d0689',
+        primary50: '#CCD0CF', // tint
+        primary100: '#9BA8AB',
+        primary200: '#4A5C6A',
+        primary400: '#253745',
+        primary500: '#06141B', // barss
+        primary700: '#11212D',//lAST
         primary800: '#200364',
         accent500: '#f7bc0c',
         error50: '#fcc4e4',

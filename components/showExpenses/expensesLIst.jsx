@@ -1,15 +1,17 @@
 
 import { View, FlatList, Text, StyleSheet, Pressable, RefreshControl } from "react-native";
 import React from "react";
+import { useState, useCallback } from "react";
+import { GlobalStyles } from "../../globlstls/globalStyles";
 
 import { useNavigation } from "@react-navigation/native";
 
 
 const ExpenseList = ({ expenses }) => {
 
-    const [refreshing, setRefreshing] = React.useState(false);
+    const [refreshing, setRefreshing] = useState(false);
 
-    const onRefresh = React.useCallback(() => {
+    const onRefresh = useCallback(() => {
       setRefreshing(true);
       setTimeout(() => {
         setRefreshing(false);
@@ -34,8 +36,8 @@ const ExpenseList = ({ expenses }) => {
             <View >
                     <Pressable android_ripple={{color: '#4f4a4a'}} style={styles.innercontainer} onPress={() => pageNavigate()}>
                     <View style={styles.content}>
-                        <Text style={{ color: 'orange' }}>Item: {data.item.disription}</Text>
-                        <Text style={{ color: 'orange' }}>Date: {daate}</Text>
+                        <Text style={styles.text}>Item: {data.item.disription}</Text>
+                        <Text style={styles.text}>Date: {daate}</Text>
                     </View>
                     <Text style={styles.cost}>Cost: {data.item.amount.toFixed(2)}$</Text>
             </Pressable>
@@ -71,18 +73,18 @@ const styles = StyleSheet.create({
         // overflow: 'hidden',
         borderWidth: 3,
         borderRadius: 7,
-        borderColor: '#ba371a',
+        borderColor: GlobalStyles.colors.primary200,
         margin: 10,
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
         padding: 7,
     },
-    content: {
-
+    text: {
+        color: GlobalStyles.colors.primary50
     },
     cost:{
-        backgroundColor: '#d1a4a1',
+        backgroundColor: GlobalStyles.colors.primary100,
         padding: 7,
         borderRadius: 4
     }

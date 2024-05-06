@@ -1,5 +1,6 @@
 
 import { View, Text, StyleSheet } from "react-native";
+import { GlobalStyles } from "../globlstls/globalStyles";
 
 const ExpensesSummary = ({expenses, expenseperiod}) => {
 
@@ -21,8 +22,7 @@ const styles = StyleSheet.create({
 
     container: {
         borderWidth: 3,
-        borderColor: '#ba371a',
-        color: '#ffff',
+        borderColor: GlobalStyles.colors.primary200,
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-between',
@@ -32,12 +32,12 @@ const styles = StyleSheet.create({
         borderRadius: 7
     },
     period: {
-        color: '#c4614b',
+        color: GlobalStyles.colors.primary50,
         fontSize: 17,
         fontWeight: 'bold'
     },
     amount: {
-        backgroundColor: '#ffff',
+        backgroundColor: GlobalStyles.colors.primary100,
         padding: 6,
         fontWeight: 'bold',
         borderRadius: 4

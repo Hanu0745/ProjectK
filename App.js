@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet } from 'react-native';
 import { Ionicons } from '@expo/vector-icons'
 
 import { NavigationContainer } from '@react-navigation/native';
@@ -18,18 +18,19 @@ import ExpanceProvider from './Store/expancesstore';
 const Tab = createBottomTabNavigator();
 const stack = createStackNavigator();
 
-const ExpenceOverView = () => {
+const ExpenceOverTabView = () => {
 
   return (
     <Tab.Navigator
       screenOptions={({ navigation }) => ({
         headerStyle: { backgroundColor: GlobalStyles.colors.primary500 },
-        // headerTintColor: 'white',
+        headerTintColor: GlobalStyles.colors.primary50,
         headerTitleAlign: 'center',
         tabBarStyle: { backgroundColor: GlobalStyles.colors.primary500 },
         tabBarActiveTintColor: GlobalStyles.colors.primary50,
+        tabBarShowLabel: false,
         headerRight: () => (
-          <Icon icc='add' color='black' size={24} onpress={() => navigation.navigate('Manageexpance')} />
+          <Icon icc='add' color={GlobalStyles.colors.primary100} size={24} onpress={() => navigation.navigate('Manageexpance')} />
         )
       })}
     >
@@ -59,14 +60,16 @@ export default function App() {
   return (
     <>
       <ExpanceProvider>
+        <StatusBar style='light'/>
         <NavigationContainer>
           <stack.Navigator
             screenOptions={{
               headerStyle: { backgroundColor: GlobalStyles.colors.primary500 },
-              headerTitleAlign: 'center'
+              headerTitleAlign: 'center',
+              headerTintColor: GlobalStyles.colors.primary50
             }}
           >
-            <stack.Screen name='expenceoverview' component={ExpenceOverView}
+            <stack.Screen name='expenceoverview' component={ExpenceOverTabView}
               options={{
                 headerShown: false
               }}

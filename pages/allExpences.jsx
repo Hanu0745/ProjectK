@@ -1,11 +1,11 @@
 
-import { View, Text, StyleSheet } from "react-native";
+import { View } from "react-native";
 import { useContext } from "react";
 
 import DisplayExpenses from "../components/showExpenses/displayExpences";
 import { ExpenceStorage } from "../Store/expancesstore";
 
-const HomePage = () => {
+const AllExpenses = () => {
 
     const expasedata = useContext(ExpenceStorage);
     // console.log(expasedata.expences);
@@ -17,4 +17,4 @@ const HomePage = () => {
     )
 }
 
-export default HomePage;
+export default AllExpenses;

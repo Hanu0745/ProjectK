@@ -25,10 +25,11 @@ const styles = StyleSheet.create({
         opacity: 0.7
     },
     btnn:{
-        backgroundColor: GlobalStyles.colors.primary500,
+        backgroundColor: GlobalStyles.colors.primary400,
         padding: 7,
         margin: 9,
         fontWeight: 'bold',
-        borderRadius: 7
+        borderRadius: 7,
+        color: GlobalStyles.colors.primary100
     }
 })
